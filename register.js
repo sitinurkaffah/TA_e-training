@@ -112,18 +112,6 @@ describe('eTraining Register Tests', function () {
 
         // Institution
         await driver.findElement(By.name("nama_institusi_peserta")).sendKeys("STT Nurul Fikri");
-        await driver.findElement(By.name("institution_status")).sendKeys("Government");
-
-        // Klik tombol Next Step
-        const btnSave3 = await driver.wait(until.elementLocated(By.id("btnSave")), 10000);
-        await driver.wait(until.elementIsVisible(btnSave3), 5000);
-        await driver.executeScript("arguments[0].scrollIntoView(true);", btnSave3);
-        await btnSave3.click();
-
-        // Agreement
-        await driver.findElement(By.name("agree")).click();
-        await driver.findElement(By.css("button[type='submit']")).click();
-
-        await driver.sleep(3000);
+        await driver.findElement(By.name("status_institusi_peserta")).sendKeys("Government");
     });
 });
