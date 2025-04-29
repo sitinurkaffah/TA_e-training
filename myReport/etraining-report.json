@@ -1,0 +1,198 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-24T03:51:35.442Z",
+    "end": "2025-04-24T03:52:55.387Z",
+    "duration": 79945,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2f598025-116b-4a5b-a5f3-b0c56c4af9b9",
+      "title": "",
+      "fullFile": "C:\\Users\\nurka\\Documents\\TAA\\TA e-training\\testing\\certificate.js",
+      "file": "\\testing\\certificate.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5cf21d7f-5f32-43ee-841a-1657eca469e0",
+          "title": "Certificate Verification Tests",
+          "fullFile": "C:\\Users\\nurka\\Documents\\TAA\\TA e-training\\testing\\certificate.js",
+          "file": "\\testing\\certificate.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Certificate Verification Tests\"",
+              "fullTitle": "Certificate Verification Tests \"before each\" hook in \"Certificate Verification Tests\"",
+              "timedOut": false,
+              "duration": 14128,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();\nawait driver.get('https://training.qiteplanguage.org/certificate');",
+              "err": {},
+              "uuid": "91495311-da67-47d6-81d9-0937ff9f83ec",
+              "parentUUID": "5cf21d7f-5f32-43ee-841a-1657eca469e0",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Certificate Verification Tests\"",
+              "fullTitle": "Certificate Verification Tests \"after each\" hook in \"Certificate Verification Tests\"",
+              "timedOut": false,
+              "duration": 1351,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (driver) {\n    try {\n        const testTitle = this.currentTest.title.replace(/\\s+/g, '_');\n        const screenshotsDir = path.resolve(__dirname, '../mochawesome-report/screenshot/certificate');\n        const screenshotPath = path.join(screenshotsDir, `${testTitle}.png`);\n        fs.mkdirSync(screenshotsDir, { recursive: true });\n        const screenshot = await driver.takeScreenshot();\n        fs.writeFileSync(screenshotPath, screenshot, 'base64');\n        addContext(this, {\n            title: 'Screenshot',\n            value: `../screenshots/${testTitle}.png`\n        });\n    } catch (err) {\n        console.error('Error taking screenshot:', err.message);\n    } finally {\n        await driver.quit();\n    }\n}",
+              "err": {},
+              "uuid": "f2d09503-2fe9-4612-a83c-89ec56663cd9",
+              "parentUUID": "5cf21d7f-5f32-43ee-841a-1657eca469e0",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "CERTTC001 - Valid Certificate and Name",
+              "fullTitle": "Certificate Verification Tests CERTTC001 - Valid Certificate and Name",
+              "timedOut": false,
+              "duration": 8724,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"Screenshot\",\n  \"value\": \"../screenshots/CERTTC001_-_Valid_Certificate_and_Name.png\"\n}",
+              "code": "await driver.findElement(By.name('no_sertifikat')).sendKeys(CERTIFICATE_NO);\nawait driver.findElement(By.name('name_sertifikat')).sendKeys(CERTIFICATE_NAME);\n// Tunggu reCAPTCHA (otomatis solved di versi testing)\nawait driver.wait(until.elementLocated(By.className('g-recaptcha')), 10000);\nawait driver.sleep(2000); // untuk memastikan token ter-generate\nawait driver.findElement(By.css('input[type=\"submit\"]')).click();\nawait driver.sleep(3000);",
+              "err": {},
+              "uuid": "ad58a3d1-2068-4963-bb90-0eeaa1fd2cd8",
+              "parentUUID": "5cf21d7f-5f32-43ee-841a-1657eca469e0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "CERTTC002 - Invalid Certificate (Non-Numeric)",
+              "fullTitle": "Certificate Verification Tests CERTTC002 - Invalid Certificate (Non-Numeric)",
+              "timedOut": false,
+              "duration": 8119,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"Screenshot\",\n  \"value\": \"../screenshots/CERTTC002_-_Invalid_Certificate_(Non-Numeric).png\"\n}",
+              "code": "await driver.findElement(By.name('no_sertifikat')).sendKeys('23/I.A/VII/2024');\nawait driver.findElement(By.name('name_sertifikat')).sendKeys(CERTIFICATE_NAME);\nawait driver.sleep(2000);\nawait driver.findElement(By.css('input[type=\"submit\"]')).click();\nawait driver.sleep(3000);",
+              "err": {},
+              "uuid": "df8f0f11-0d4c-4d3b-bf0d-16b6785d6d84",
+              "parentUUID": "5cf21d7f-5f32-43ee-841a-1657eca469e0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "CERTTC003 - Submit without CAPTCHA (should still pass in test mode)",
+              "fullTitle": "Certificate Verification Tests CERTTC003 - Submit without CAPTCHA (should still pass in test mode)",
+              "timedOut": false,
+              "duration": 8013,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"Screenshot\",\n  \"value\": \"../screenshots/CERTTC003_-_Submit_without_CAPTCHA_(should_still_pass_in_test_mode).png\"\n}",
+              "code": "await driver.findElement(By.name('no_sertifikat')).sendKeys(CERTIFICATE_NO);\nawait driver.findElement(By.name('name_sertifikat')).sendKeys(CERTIFICATE_NAME);\nawait driver.sleep(2000);\nawait driver.findElement(By.css('input[type=\"submit\"]')).click();\nawait driver.sleep(3000);",
+              "err": {},
+              "uuid": "6c418852-454c-49fa-8205-769419618c33",
+              "parentUUID": "5cf21d7f-5f32-43ee-841a-1657eca469e0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "CERTTC004 - Leave Fields Empty",
+              "fullTitle": "Certificate Verification Tests CERTTC004 - Leave Fields Empty",
+              "timedOut": false,
+              "duration": 6212,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"Screenshot\",\n  \"value\": \"../screenshots/CERTTC004_-_Leave_Fields_Empty.png\"\n}",
+              "code": "await driver.sleep(2000);\nawait driver.findElement(By.css('input[type=\"submit\"]')).click();\nawait driver.sleep(3000);",
+              "err": {},
+              "uuid": "da1831a6-a8a8-46ef-9366-c4c2034775d2",
+              "parentUUID": "5cf21d7f-5f32-43ee-841a-1657eca469e0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ad58a3d1-2068-4963-bb90-0eeaa1fd2cd8",
+            "df8f0f11-0d4c-4d3b-bf0d-16b6785d6d84",
+            "6c418852-454c-49fa-8205-769419618c33",
+            "da1831a6-a8a8-46ef-9366-c4c2034775d2"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 31068,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 100000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.1.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "etraining-report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "./myReport",
+        "reportFilename": "etraining-report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
